@@ -1,0 +1,91 @@
+<div [ngClass]="{'col-sm-3': true, 'col-md-3': true, 'app-hide': title=='Tour of Heroes'}" style="padding-top: 6rem; padding-bottom: 1rem; position: fixed; z-index: 1029; background-color: #000;max-width:100%">
+  <form class="navbar-form" role="search">
+    <div class="input-group">
+      <input type="text" class="form-control search-box" (keyup)="filter($event)" placeholder="Search #Cargo" name="q" style="
+    background-color: #000;
+    color: #fff;
+">
+    </div>
+  </form>
+</div>
+<div id="accordion" class="cargo-list">
+
+    <div class="card" *ngFor="let hero of filteredData">
+      <button class="btn btn-link" data-toggle="collapse" [hidden]="editorEnabled" attr.data-target="#{{hero.id}}" aria-expanded="true" aria-controls="collapseOne">
+        <div class="card-header" id="headingOne">
+          <h5 class="mb-0">
+            Cargo #{{hero.cargo}}
+          </h5>
+        </div>
+        <div class="card-header-content">
+          Status: <span>{{hero.status}}</span>
+        </div>
+        <div class="card-header-content">
+          ETA: <span>{{hero.ETA}}</span>
+        </div>
+        <div class="card-header-content">
+          Bill of Lading: <span>{{hero.BIL}}</span>
+        </div>
+      </button>
+
+      <!-- Editable content -->
+      <button class="btn btn-link" [hidden]="!editorEnabled"  aria-expanded="true" aria-controls="collapseOne">
+        <div class="card-header" id="headingOne">
+          <h5 class="mb-0">
+            Cargo #{{hero.cargo}}
+          </h5>
+        </div>
+        <div class="card-header-content">
+          Status:  <span>
+            <select [ngModel]="status" (change)="changeStatus($event)">
+            <option *ngFor="let item of statusOptions">
+              {{item.value}}
+            </option>
+        </select>
+        </span>
+        </div>
+        <div class="card-header-content">
+          ETA: <span><input ngModel="ETA"></span>
+        </div>
+        <div class="card-header-content">
+          Bill of Lading: <span><input ngModel="BIL"></span>
+        </div>
+      </button>
+
+      <div id="{{hero.id}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+        <div class="card-body">
+          <div [hidden]="editorEnabled" (click)="editData()">
+            <span  class="edit-btn"></span>Edit</div>
+
+        <div [hidden]="!editorEnabled">
+          <a (click)="saveData()" style="margin-right:20px;">
+            <span  class="save-btn"></span>Save</a>
+
+          <a (click)="disableEditor()">
+            <span  class="cancel-btn"></span>cancel</a>
+        </div>
+        <div id="sucessMsg"  style="color:green;padding-bottom:20px;" [hidden]="sucessMessageEnabled">Status saved successfully!</div>
+
+
+          <div class="card-detail-1">Vehicles (5)</div>
+          <div class="card-detail-2" routerLink="/detail/{{hero.id}}">
+            <div class="row" *ngFor="let child of hero.child">
+              <div class="col-6">
+                <img class="car-image" src="assets/images/g-class.jpeg" />
+              </div>
+              <div class="col-6 pl-0">
+                <div class="car-title">{{child.title}}</div>
+                <div class="word-wrap-initial" >{{child.VIN}}</div>
+                <div>Color: {{child.color}}</div>
+                <div>Status: {{child.status}}</div>
+              </div>
+            </div>
+          <div class="card-detail-4">See all 5 vehicles</div>
+          <div class="card-detail-5">See all 15 comments</div>
+          <div class="card-detail-6">Write comments</div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!--<app-hero-search></app-hero-search>-->

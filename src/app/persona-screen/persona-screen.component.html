@@ -1,0 +1,10 @@
+<section class="main-content">
+  <div class="row persona-options">
+      <div *ngFor="let item of persona" class="persona-circle">
+          <button routerLink={{item.navUrl}}>
+              <img src={{item.src}}>
+          </button>
+        <div style="font-weight:bold;font-size:20px;text-align:center;margin-top:20px;">{{item.name}}</div>
+      </div>
+    </div>
+</section>

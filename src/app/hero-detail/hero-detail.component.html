@@ -1,0 +1,40 @@
+<div class="car-detail">
+  <div class="back"><span class="back-arrow" routerLink="/dashboard"></span>
+    <span style="
+    padding-left: 30%;
+"> Vehicle Detail</span></div>
+  <div style="margin: 1.5rem;
+    font-weight: 700;
+    font-size: 18px;
+">Mercedes Benz G</div>
+  <div class="m-4">
+    <div class="image-holder">
+      <img class="car-image" src="assets/images/g-class.jpeg">
+    </div>
+    <div class="mt-4 details-block">
+
+      <div>VIN#: WDDZF0FB8JA376882</div>
+      <div>Model: G Class</div>
+      <div>Engine: 4 Power</div>
+      <div>Color:   designo mocha black metallic</div>
+        <div>Status: <span style="word-break: break-all;" [hidden]="editorEnabled">{{status}}</span> <span [hidden]="!editorEnabled">
+          <select [ngModel]="status" (change)="changeStatus($event)">
+          <option *ngFor="let item of statusOptions">
+            {{item.value}}
+          </option>
+      </select>
+      </span></div>
+        <div [hidden]="editorEnabled" (click)="editData()">
+          <span  class="edit-btn"></span>Edit</div>
+
+      <div [hidden]="!editorEnabled">
+        <a (click)="saveData()" style="margin-right:20px;">
+          <span  class="save-btn"></span>Save</a>
+
+        <a (click)="disableEditor()">
+          <span  class="cancel-btn"></span>cancel</a>
+      </div>
+      <div id="sucessMsg"  style="color:green;padding-bottom:20px;" [hidden]="sucessMessageEnabled">Status saved successfully!</div>
+
+    </div>
+  </div></div>
