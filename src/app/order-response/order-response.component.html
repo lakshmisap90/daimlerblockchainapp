@@ -1,0 +1,13 @@
+<section class="main-content order-details">
+  <div class="card-container" >
+    <div class="card-title">Delay Reasons</div>
+    <div *ngFor="let item of quotationResponse; let i= index;" class="response-list">
+        <div>
+          <span class="profile-image"></span>
+          <span>{{item.name}}</span>
+        </div>
+        <div>{{item.comment}}</div>
+        <hr class="line-divider">
+    </div>
+  </div>
+</section>

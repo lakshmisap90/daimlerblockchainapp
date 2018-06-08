@@ -1,0 +1,19 @@
+<section class="main-content vehicle-list">
+  <div class="card-title">Vehicles</div>
+  <div class="card-container" *ngFor="let item of vehicles">
+    <div (click)="navigateToDetails($event,item.vId)" class="card-items">
+      <div class="vehicle-img-holder">
+        <img src="{{item.imageUrl}}">
+      </div>
+      <div class="vehicle-details">
+        <div>{{item.name}}</div>
+        <div>VIN# {{item.vin}}</div>
+        <div>color: {{item.color}}</div>
+      </div>
+      <div class="navigation-arrow">
+        <img src="../assets/images/right-arrow.png">
+      </div>
+      <hr class="line-divider">
+    </div>
+  </div>
+</section>

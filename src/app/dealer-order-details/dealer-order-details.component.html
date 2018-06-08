@@ -1,0 +1,90 @@
+<section class="main-content order-details">
+   <div class="card-container">
+      <h1 class="card-title">Quotation #{{quotation.qID}}</h1>
+      <div class="cube-container">
+         <div *ngFor="let subItem of quotation.transactionStatus; let i = index " class="cube-outer">
+            <span data-toggle="modal" data-target="#quotationDetailsModal" [ngClass]="(subItem.currentStatus === 'completed' ) ? 'statusCube fullCube' : 'statusCube emptyCube'"></span>
+            <span class="line" *ngIf="i != 3"></span>
+            <div class="count">{{i+1}}</div>
+            <!-- Modal window -->
+            <div id="quotationDetailsModal" class="modal fade" role="dialog">
+               <div class="modal-dialog">
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h4 class="modal-title">Block No: {{i+1}}</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                     </div>
+                     <div class="modal-body">
+                        <div style="font-weight:bold;">Status:</div>
+                        <div>{{subItem.desc}}</div>
+                        <div style="font-weight:bold;">Transaction Id:</div>
+                        <div>{{subItem.tId}}</div>
+                        <div style="font-weight:bold;">Timestamp:</div>
+                        <div>{{subItem.tId}}</div>
+                     </div>
+                     <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div>ETA: {{quotation.ETA}}</div>
+   </div>
+   <hr class="line-divider">
+   <!-- Map block -->
+   <div class="mapContainer" style="padding:10px;">
+      <div class="title">Current location on Map</div>
+      <div (click)="openGoogleMap(quotation.location.latitude,quotation.location.longitude)" class="external-link-map">View in Google map</div>
+      <img class="googleMapContainer" src="https://maps.googleapis.com/maps/api/staticmap?center='{{quotation.location.latitude}}','{{quotation.location.longitude}}'&zoom=13&size=600x300&maptype=roadmap
+         &markers=size:mid|color:red|label:E|'{{quotation.location.latitude}}','{{quotation.location.longitude}}'
+         &key=AIzaSyD39Oa35qccHm_-LBHJcN8VhqB_jb35WeA">
+   </div>
+   <hr class="line-divider">
+   <!-- delay reasons -->
+   <div class="card-container" >
+      <div class="card-title">Delay Reasons</div>
+      <div *ngFor="let item of quotation.delayReasons; let i= index;">
+         <div *ngIf="i<2" style="margin-bottom:10px;">
+            <div>
+               <span class="profile-image"></span>
+               <span>{{item.name}}</span>
+            </div>
+            <div>{{item.comment}}</div>
+            <hr class="line-divider">
+         </div>
+      </div>
+      <div routerLink="/order/{{quotation.qID}}/response" class="navigation-link">
+         See all {{quotation.delayReasons.length}} responses
+         <div class="navigation-arrow">
+            <img src="../assets/images/right-arrow.png">
+         </div>
+      </div>
+   </div>
+   <hr class="line-divider">
+   <!-- Vehicles list -->
+   <div class="card-container">
+      <div *ngFor="let item of quotation.vehicles; let i= index;">
+         <div *ngIf="i<3">
+            <div >
+              <img class="vehicle-image" src="{{item.imageUrl}}"/>
+            </div>
+            <div>
+               <div>{{item.name}}</div>
+               <div>{{item.vin}}</div>
+               <div>{{item.color}}</div>
+            </div>
+            <hr class="line-divider">
+         </div>
+      </div>
+      <div routerLink="/order/{{quotation.qID}}/vehiclelist" class="navigation-link">
+         See all {{quotation.vehicles.length}} Vehicles
+         <div class="navigation-arrow">
+            <img src="../assets/images/right-arrow.png">
+         </div>
+      </div>
+      <hr class="line-divider">
+   </div>
+</section>

@@ -11,9 +11,6 @@ import { HeroService } from '../hero.service';
 export class DashboardComponent implements OnInit {
   heroes = [];
   filteredData = [];
-  editorEnabled = false;
-  sucessMessageEnabled = true;
-  statusValue = '';
   statusOptions = [
     {
       "id":"1",
@@ -72,23 +69,6 @@ export class DashboardComponent implements OnInit {
   filter(event: any) {
     const searchedVariable:string = event.target.value;
     this.filteredData = this.heroes.filter(hero => hero.cargo.indexOf(searchedVariable) >= 0);
-  }
-
-  editData(): void {
-    this.editorEnabled = true;
-    this.editStatus = this.status;
-    this.sucessMessageEnabled = true;
-  }
-
-  changeStatus(event) : void{
-    this.statusValue = event.target.value;
-  }
-
-  saveData(): void {
-    this.editorEnabled = false;
-    this.status = this.editStatus;
-    localStorage.setItem('status', this.status);
-    this.sucessMessageEnabled = false;
   }
 
   constructor(private heroService: HeroService) { }

@@ -1,0 +1,25 @@
+<div class="order-vehicle-details car-detail">
+  <div style="margin: 1.5rem;font-weight: 700;font-size: 18px;">{{vehicleDetail.name}}</div>
+  <div class="m-4">
+    <div class="image-holder">
+      <img class="car-image" src="{{vehicleDetail.imageUrl}}">
+    </div>
+    <div class="mt-4 details-block">
+
+      <div>VIN#: {{vehicleDetail.vin}}</div>
+      <div>Model: {{vehicleDetail.model}}</div>
+      <div>Engine: {{vehicleDetail.engine}}</div>
+      <div>Color:   {{vehicleDetail.color}}</div>
+    </div>
+  </div>
+  <hr class="line-divider">
+  <div class="card-title">Customer Details</div>
+  <div class="card-container">
+    <div class="profile-image"></div>
+    <div class="profile-details">
+      <div>{{vehicleDetail.customer.name}}</div>
+      <div>{{vehicleDetail.customer.email}}</div>
+      <div>{{vehicleDetail.customer.phone}}</div>
+    </div>
+  </div>
+</div>

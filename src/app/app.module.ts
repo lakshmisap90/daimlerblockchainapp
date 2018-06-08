@@ -15,6 +15,12 @@ import { HeroesComponent }      from './heroes/heroes.component';
 import { HeroSearchComponent }  from './hero-search/hero-search.component';
 import { MessagesComponent }    from './messages/messages.component';
 import { PersonaScreenComponent } from './persona-screen/persona-screen.component';
+import { OrderVehicleListComponent } from './order-vehicle-list/order-vehicle-list.component';
+import { OrderVehicleDetailsComponent } from './order-vehicle-details/order-vehicle-details.component';
+import { OrderResponseComponent } from './order-response/order-response.component';
+import { DealerOrderDetailsComponent } from './dealer-order-details/dealer-order-details.component';
+import { DealerDashboardComponent } from './dealer-dashboard/dealer-dashboard.component';
+import { Data } from "./provider/order-data.provider";
 
 @NgModule({
   imports: [
@@ -37,9 +43,15 @@ import { PersonaScreenComponent } from './persona-screen/persona-screen.componen
     HeroDetailComponent,
     MessagesComponent,
     HeroSearchComponent,
-    PersonaScreenComponent
+    PersonaScreenComponent,
+    OrderVehicleListComponent,
+    OrderVehicleDetailsComponent,
+    OrderResponseComponent,
+    DealerOrderDetailsComponent,
+    DealerDashboardComponent
   ],
-  bootstrap: [ AppComponent ]
+  bootstrap: [ AppComponent ],
+  providers: [Data]
 })
 export class AppModule {
 }

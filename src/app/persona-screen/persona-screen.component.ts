@@ -20,7 +20,7 @@ export class PersonaScreenComponent implements OnInit {
     {
       "name" : "Dealer",
       "src" : "/assets/images/mpc.png",
-      "navUrl" : "#"
+      "navUrl" : "/dealer/orders"
     }
   ]
 

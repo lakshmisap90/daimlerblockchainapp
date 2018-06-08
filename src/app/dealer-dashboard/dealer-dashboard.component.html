@@ -1,0 +1,50 @@
+<section class="main-content">
+   <!-- Chart -->
+   <div class="chartContainer">
+      <div  #chartTarget></div>
+   </div>
+   <!-- Dealer order list -->
+   <div class="row" *ngFor="let item of quotation">
+      <div class="row quotation-card" (click)="navigateToDetails($event,item.qID)">
+         <h1>Quotation #{{item.qID}}</h1>
+         <div class="cube-container">
+            <div *ngFor="let subItem of item.transactionStatus; let i = index " class="cube-outer">
+               <span data-toggle="modal" id="quotationcube" data-target="#quotationDetailsModal" [ngClass]="(subItem.currentStatus === 'completed' ) ? 'statusCube fullCube' : 'statusCube emptyCube'"></span>
+               <span class="line" *ngIf="i != 3"></span>
+               <div class="count">{{i+1}}</div>
+               <!-- Modal window -->
+               <div id="quotationDetailsModal" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+                     <!-- Modal content-->
+                     <div class="modal-content">
+                        <div class="modal-header">
+                           <h4 class="modal-title">Block No: {{i+1}}</h4>
+                           <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                           <div style="font-weight:bold;">Status:</div>
+                           <div>{{subItem.desc}}</div>
+                           <div style="font-weight:bold;">Transaction Id:</div>
+                           <div>{{subItem.tId}}</div>
+                           <div style="font-weight:bold;">Timestamp:</div>
+                           <div>{{subItem.tId}}</div>
+                        </div>
+                        <div class="modal-footer">
+                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="etaContent">ETA: {{item.ETA}}</div>
+         <!-- Map container -->
+         <div class="mapContainer">
+            <div class="title">Current location on Map</div>
+            <img class="googleMapContainer" src="https://maps.googleapis.com/maps/api/staticmap?center='{{item.location.latitude}}','{{item.location.longitude}}'&zoom=13&size=600x300&maptype=roadmap
+               &markers=size:mid|color:red|label:E|'{{item.location.latitude}}','{{item.location.longitude}}'
+               &key=AIzaSyCYb5pEceOKjO3_4ygvsvQc1PxWqsxRsdM">
+         </div>
+      </div>
+   </div>
+</section>
